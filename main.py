@@ -1,18 +1,22 @@
 import pygame
-import gamesprites
+from character import Person
 
 #engine initialize
 pygame.init
 
 #declare colors
 BLACK = (0,0,0)
-RED = (196,66,38)
 WHITE = (255,255,255)
 
 #Open game window
 size = (800,600)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("FunctZii First Game")
+
+#create sprite
+playerChar = Person(WHITE, 16, 16)
+playerChar.rect.x = 100
+playerChar.rect.y = 100
 
 carryOn = True
 
@@ -25,7 +29,7 @@ while carryOn:
     
     #paint the screen
     screen.fill(BLACK)
-    
+
     #screen update
     pygame.display.flip()
     
