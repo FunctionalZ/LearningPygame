@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Aug 18 22:52:53 2022
-
-@author: funct
-"""
 import pygame
 import gamesprites
 
