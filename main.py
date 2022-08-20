@@ -1,6 +1,6 @@
 from tokenize import _all_string_prefixes
 import pygame
-from character import Person
+from assets.character import Person
 
 #engine initialize
 pygame.init
