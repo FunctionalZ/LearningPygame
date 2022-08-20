@@ -10,6 +10,6 @@ class Person(pygame.sprite.Sprite):
         super().__init__()
 
         #set characters image
-        self.image = pygame.image.load("person.png").convert_alpha()
+        self.image = pygame.image.load("assets/person.png").convert_alpha()
 
         self.rect = self.image.get_rect()
