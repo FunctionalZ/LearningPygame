@@ -1,7 +1,15 @@
+from distutils.dist import DistributionMetadata
+from sys import displayhook
 from tokenize import _all_string_prefixes
 import pygame, time, random
 from assets.character import Person
-from assets.levels import Level
+from assets.levelList import Level
+from assets.levelDictionary import currentLevel
+from assets.levelDictionary import levelWidth
+from assets.levelDictionary import levelHeight
+from assets.levelDictionary import StartX
+from assets.levelDictionary import StartY
+from assets.levelDictionary import validCoords
 
 #engine initialize
 pygame.init
@@ -20,14 +28,14 @@ player_sprites = pygame.sprite.Group()
 level_sprites = pygame.sprite.Group()
 
 #create player sprite
-playerChar = Person(BLACK, 16, 16)
+playerChar = Person(BLACK, 32, 32)
 playerChar.rect.x = 320
-playerChar.rect.y = 240
+playerChar.rect.y = 256
 
 #create level sprite
-levelArea = Level(BLACK, 640, 480)
-levelArea.rect.x = 0
-levelArea.rect.y = 0
+levelArea = Level(BLACK, levelWidth, levelHeight)
+levelArea.rect.x = StartX
+levelArea.rect.y = StartY
 
 #add player character to the list of objects
 player_sprites.add(playerChar)
@@ -36,14 +44,8 @@ level_sprites.add(levelArea)
 carryOn = True
 clock = pygame.time.Clock()
 
-#coordinates pre setup
-coordX = 0
-coordY = 0
-
-#physics pre setup
-velocity = 16
-previous_time = time.time()
-deltaTime = 0
+coordinates = [0, 0]
+coordinateForcast = [0,0]
 
 while carryOn:
     #set the FPS
@@ -53,41 +55,42 @@ while carryOn:
         if event.type == pygame.QUIT: # If user clicked close
               carryOn = False # Flag that we are done so we can exit the while loop
     
-    #time physics stuff
-    now = time.time()
-    deltaTime = now - previous_time
-    prev_time = now
-    
     #pressing keys does funni
     keys = pygame.key.get_pressed()
-    #Logic for moving up
+    #Logic for moving up needs to be fixed so that valid coordinates are properly identified and then compared to this code
+    """
     if keys[pygame.K_w]:
-        levelArea.moveUp(16)
-        coordY = coordY + 1
-        print("Y coord: " + str(coordY))
+        coordinateForcast[1] = coordinateForcast[1] + 1
+        for i in range(len(validCoords)):
+            if validCoords[i] == coordinateForcast:
+                print(i)
+                print(validCoords[i])
+                levelArea.moveUp(32)
+                coordinates[1] = coordinates[1] + 1
+    """
     #Logic for moving Left
     if keys[pygame.K_a]:
-        levelArea.moveLeft(16)
-        coordX = coordX - 1
-        print("X coord: " + str(coordX))
+            levelArea.moveLeft(32)
+            coordinates[0] = coordinates[0] - 1
+            coordinateForcast = coordinates
     #Logic for moving Downward
     if keys[pygame.K_s]:
-        levelArea.moveDown(16)
-        coordY = coordY - 1
-        print("Y coord: " + str(coordY))
+        levelArea.moveDown(32)
+        coordinates[1] = coordinates[1] - 1
+        coordinateForcast = coordinates
     #Logic for moving Right
     if keys[pygame.K_d]:
-        levelArea.moveRight(16)
-        coordX = coordX + 1
-        print("X coord: " + str(coordX))
+        levelArea.moveRight(32)
+        coordinates[0] = coordinates[0] + 1
+        coordinateForcast = coordinates
     
     if keys[pygame.K_g]:
         print("debug info:")
-        print("X coord: " + str(coordX))
-        print("Y coord: " + str(coordY))
-
+        print("Coordinates: " + str(coordinates))
+        print("Coordinate Forecast: " + str(coordinateForcast))
 
     #Game Logic
+    coordinateForcast = coordinates
     player_sprites.update()
     level_sprites.update()
 
