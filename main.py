@@ -37,8 +37,8 @@ carryOn = True
 clock = pygame.time.Clock()
 
 #coordinates pre setup
-coordX = levelArea.rect.x
-coordY = levelArea.rect.y
+coordX = 0
+coordY = 0
 
 #physics pre setup
 velocity = 16
@@ -47,7 +47,7 @@ deltaTime = 0
 
 while carryOn:
     #set the FPS
-    clock.tick(60)
+    clock.tick(10)
 
     for event in pygame.event.get(): # User did something
         if event.type == pygame.QUIT: # If user clicked close
@@ -62,32 +62,29 @@ while carryOn:
     keys = pygame.key.get_pressed()
     #Logic for moving up
     if keys[pygame.K_w]:
-        if coordY < 240:
-            levelArea.moveUp(velocity *deltaTime)
-            coordY = levelArea.rect.y
-            print(coordY)
+        levelArea.moveUp(16)
+        coordY = coordY + 1
+        print("Y coord: " + str(coordY))
     #Logic for moving Left
     if keys[pygame.K_a]:
-        if coordX < 320:
-            levelArea.moveLeft(velocity * deltaTime)
-            coordX = levelArea.rect.x
-            print(coordX)
+        levelArea.moveLeft(16)
+        coordX = coordX - 1
+        print("X coord: " + str(coordX))
     #Logic for moving Downward
     if keys[pygame.K_s]:
-        if coordY > -224:
-            levelArea.moveDown(velocity * deltaTime)
-            coordY = levelArea.rect.y
-            print(coordY)
+        levelArea.moveDown(16)
+        coordY = coordY - 1
+        print("Y coord: " + str(coordY))
     #Logic for moving Right
     if keys[pygame.K_d]:
-        if coordX > -304:
-            levelArea.moveRight(velocity * deltaTime)
-            coordX = levelArea.rect.x
-            print(coordX)
+        levelArea.moveRight(16)
+        coordX = coordX + 1
+        print("X coord: " + str(coordX))
     
     if keys[pygame.K_g]:
-        print("Velocity: " + str(velocity))
-        print("Delta time: " + str(deltaTime))
+        print("debug info:")
+        print("X coord: " + str(coordX))
+        print("Y coord: " + str(coordY))
 
 
     #Game Logic
@@ -103,7 +100,5 @@ while carryOn:
 
     #screen update
     pygame.display.flip()
-
-    
 
 pygame.quit()
