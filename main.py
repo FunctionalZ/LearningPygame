@@ -10,6 +10,7 @@ from assets.levelDictionary import levelHeight
 from assets.levelDictionary import StartX
 from assets.levelDictionary import StartY
 from assets.levelDictionary import validCoords
+from assets.levelDictionary import startCoords
 
 #engine initialize
 pygame.init
@@ -51,6 +52,12 @@ coordinateForcastDown = [0, 0]
 coordinateForcastLeft = [0, 0]
 coordinateForcastRight = [0, 0]
 
+#set the coordinates to the coordinates that you should start a level in
+levelArea.rect.x = levelArea.rect.x - (startCoords[0] * 32)
+levelArea.rect.y = levelArea.rect.y + (startCoords[1] * 32)
+coordinates = startCoords
+
+#set a flag that gets used later in code
 breakFlag = False
 
 while carryOn:
