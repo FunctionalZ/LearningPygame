@@ -1,5 +1,9 @@
 currentLevel = 2
-
+"""
+levelWidth and levelHeight refer to the dimensions of the image that the level uses
+StartX and StartY refer to the offset in x or y pixels that the level should be. For example the imaged for Level id 2 is 
+moved right 192 pixels and is moved up 160 pixels 
+"""
 if currentLevel == 1:
     #set dimensions for level 1
     levelWidth = 640
