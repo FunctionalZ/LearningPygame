@@ -4,4 +4,3 @@ setup.py
 dist
 build
 main.spec
-main.py (orig).py
