@@ -10,11 +10,6 @@ class Level(pygame.sprite.Sprite):
 
         if currentLevel == 1:
             #set level image to level 1
-            self.image = pygame.image.load("assets/levelOne.png").convert_alpha()
-
-            self.rect = self.image.get_rect()
-        if currentLevel == 2:
-            #set level image to level 2
             self.image = pygame.image.load("assets/StoneMap.png").convert_alpha()
 
             self.rect = self.image.get_rect()
