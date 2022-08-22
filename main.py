@@ -44,8 +44,14 @@ level_sprites.add(levelArea)
 carryOn = True
 clock = pygame.time.Clock()
 
+#set everything all coordinates to 0, 0 before the game handles and makes changes to them
 coordinates = [0, 0]
-coordinateForcast = [0,0]
+coordinateForcastUp = [0, 0]
+coordinateForcastDown = [0, 0]
+coordinateForcastLeft = [0, 0]
+coordinateForcastRight = [0, 0]
+
+breakFlag = False
 
 while carryOn:
     #set the FPS
@@ -55,42 +61,76 @@ while carryOn:
         if event.type == pygame.QUIT: # If user clicked close
               carryOn = False # Flag that we are done so we can exit the while loop
     
+    #coordinate forecast up
+    coordinateForcastUp[0] = coordinates[0]
+    coordinateForcastUp[1] = coordinates[1] + 1
+
+    #coordinate forecast down
+    coordinateForcastDown[0] = coordinates[0]
+    coordinateForcastDown[1] = coordinates[1] - 1
+
+    #coordinate forecast left
+    coordinateForcastLeft[0] = coordinates[0] - 1
+    coordinateForcastLeft[1] = coordinates[1]
+
+    #coordinate forecast right
+    coordinateForcastRight[0] = coordinates[0] + 1
+    coordinateForcastRight[1] = coordinates[1]
+
     #pressing keys does funni
     keys = pygame.key.get_pressed()
-    #Logic for moving up needs to be fixed so that valid coordinates are properly identified and then compared to this code
-    """
+    #Logic for moving up
     if keys[pygame.K_w]:
-        coordinateForcast[1] = coordinateForcast[1] + 1
         for i in range(len(validCoords)):
-            if validCoords[i] == coordinateForcast:
-                print(i)
-                print(validCoords[i])
+            if validCoords[i] == coordinateForcastUp:
                 levelArea.moveUp(32)
                 coordinates[1] = coordinates[1] + 1
-    """
+                breakFlag = True
+            if breakFlag:
+                breakFlag = False
+                break       
     #Logic for moving Left
-    if keys[pygame.K_a]:
-            levelArea.moveLeft(32)
-            coordinates[0] = coordinates[0] - 1
-            coordinateForcast = coordinates
+    elif keys[pygame.K_a]:
+        for i in range(len(validCoords)):
+            if validCoords[i] == coordinateForcastLeft:
+                levelArea.moveLeft(32)
+                coordinates[0] = coordinates[0] - 1
+                breakFlag = True
+            if breakFlag:
+                breakFlag = False
+                break
     #Logic for moving Downward
-    if keys[pygame.K_s]:
-        levelArea.moveDown(32)
-        coordinates[1] = coordinates[1] - 1
-        coordinateForcast = coordinates
+    elif keys[pygame.K_s]:
+        for i in range(len(validCoords)):
+            if validCoords[i] == coordinateForcastDown:
+                levelArea.moveDown(32)
+                coordinates[1] = coordinates[1] - 1
+                breakFlag = True
+            if breakFlag:
+                breakFlag = False
+                break
     #Logic for moving Right
-    if keys[pygame.K_d]:
-        levelArea.moveRight(32)
-        coordinates[0] = coordinates[0] + 1
-        coordinateForcast = coordinates
+    elif keys[pygame.K_d]:
+        for i in range(len(validCoords)):
+            if validCoords[i] == coordinateForcastRight:
+                levelArea.moveRight(32)
+                coordinates[0] = coordinates[0] + 1
+                breakFlag = True
+            if breakFlag:
+                breakFlag = False
+                break
     
+    #debug key set to g you can completely delete this section for final release
     if keys[pygame.K_g]:
+        print(" ")
         print("debug info:")
         print("Coordinates: " + str(coordinates))
-        print("Coordinate Forecast: " + str(coordinateForcast))
+        print("Coordinate Forecast up: " + str(coordinateForcastUp))
+        print("Coordinate Forecast down: " + str(coordinateForcastDown))
+        print("Coordinate Forecast left: " + str(coordinateForcastLeft))
+        print("Coordinate Forecast right: " + str(coordinateForcastRight))
 
     #Game Logic
-    coordinateForcast = coordinates
     player_sprites.update()
     level_sprites.update()
 
