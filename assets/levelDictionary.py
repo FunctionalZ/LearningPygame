@@ -1,4 +1,4 @@
-currentLevel = 1
+currentMap = 1
 StartX = 0
 StartY = 0
 levelBoundsFill = (0,0,0)
@@ -9,7 +9,7 @@ StartX and StartY refer to the offset in x or y pixels that the level should be.
 moved right 192 pixels and is moved up 160 pixels 
 """
 
-if currentLevel == 1:
+if currentMap == 1:
     #set dimensions for level 1
     levelWidth = 256
     levelHeight = 192

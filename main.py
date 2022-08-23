@@ -4,7 +4,7 @@ from tokenize import _all_string_prefixes
 import pygame, time, random
 from assets.character import Person
 from assets.levelList import Level
-from assets.levelDictionary import currentLevel
+from assets.levelDictionary import currentMap
 from assets.levelDictionary import levelWidth
 from assets.levelDictionary import levelHeight
 from assets.levelDictionary import validCoords
