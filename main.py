@@ -9,6 +9,7 @@ from assets.levelDictionary import levelWidth
 from assets.levelDictionary import levelHeight
 from assets.levelDictionary import validCoords
 from assets.levelDictionary import startCoords
+from assets.levelDictionary import levelBoundsFill
 
 #engine initialize
 pygame.init
@@ -156,7 +157,7 @@ while carryOn:
     level_sprites.update()
 
     #paint the screen
-    screen.fill(BLACK)
+    screen.fill(levelBoundsFill)
 
     #draw sprites to screen
     level_sprites.draw(screen)
