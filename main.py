@@ -127,6 +127,20 @@ while carryOn:
                 breakFlag = False
                 break
     
+    #movement keys for when you need to make a list of valid coordinates on a new map
+    if keys[pygame.K_UP]:
+        levelArea.moveUp(32)
+        coordinates[1] = coordinates[1] + 1
+    elif keys[pygame.K_LEFT]:
+        levelArea.moveLeft(32)
+        coordinates[0] = coordinates[0] - 1
+    elif keys[pygame.K_DOWN]:
+        levelArea.moveDown(32)
+        coordinates[1] = coordinates[1] - 1
+    elif keys[pygame.K_RIGHT]:
+        levelArea.moveRight(32)
+        coordinates[0] = coordinates[0] + 1
+
     #debug key set to g you can completely delete this section for final release
     if keys[pygame.K_g]:
         print(" ")
