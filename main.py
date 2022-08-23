@@ -7,8 +7,6 @@ from assets.levelList import Level
 from assets.levelDictionary import currentLevel
 from assets.levelDictionary import levelWidth
 from assets.levelDictionary import levelHeight
-from assets.levelDictionary import StartX
-from assets.levelDictionary import StartY
 from assets.levelDictionary import validCoords
 from assets.levelDictionary import startCoords
 
@@ -18,11 +16,13 @@ pygame.init
 #declare colors
 BLACK = (0,0,0)
 WHITE = (255,255,255)
+programIcon = pygame.image.load("assets/playerCharacter.png")
 
 #Open game window
 size = (640,480)
 screen = pygame.display.set_mode(size)
-pygame.display.set_caption("Learning Project")
+pygame.display.set_caption("RPG Engine (indev)")
+pygame.display.set_icon(programIcon)
 
 #lists that contains all sprites
 player_sprites = pygame.sprite.Group()
@@ -35,8 +35,8 @@ playerChar.rect.y = 256
 
 #create level sprite
 levelArea = Level(BLACK, levelWidth, levelHeight)
-levelArea.rect.x = StartX
-levelArea.rect.y = StartY
+levelArea.rect.x = 0
+levelArea.rect.y = 0
 
 #add player character to the list of objects
 player_sprites.add(playerChar)
