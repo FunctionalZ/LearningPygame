@@ -21,7 +21,7 @@ programIcon = pygame.image.load("assets/playerCharacter.png")
 
 #Open game window
 size = (640,480)
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(size, pygame.SCALED, vsync=1)
 pygame.display.set_caption("RPG Engine (indev)")
 pygame.display.set_icon(programIcon)
 
@@ -160,14 +160,15 @@ while carryOn:
 
     #some stuff for switching between windowed and fullscreen mode
     if keys[pygame.K_f]:
-        pygame.display.set_mode(size, pygame.FULLSCREEN)
+        pygame.display.set_mode(size, pygame.FULLSCREEN, vsync=1)
         fullscreen = True
         windowed = False
         pygame.WINDOWTAKEFOCUS
     if keys[pygame.K_u]:
-        screen = pygame.display.set_mode(size)
+        screen = pygame.display.set_mode(size, pygame.SCALED, vsync=1)
         windowed = True
         fullscreen = False
+    #you can close the game using the escape key
     if keys[pygame.K_ESCAPE]:
         carryOn = False
 

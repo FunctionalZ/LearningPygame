@@ -11,8 +11,8 @@ moved right 192 pixels and is moved up 160 pixels
 
 if currentMap == 1:
     #set dimensions for level 1
-    levelWidth = 256
-    levelHeight = 192
+    levelWidth = 0
+    levelHeight = 0
     startCoords = [-4,6]
     levelBoundsFill = [98,98,98]
     #Valid Coordinates

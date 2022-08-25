@@ -11,7 +11,7 @@ class Level(pygame.sprite.Sprite):
         if currentMap == 1:
             #set level image to level 1
             self.image = pygame.image.load("assets/StoneMap.png").convert_alpha()
-
+            
             self.rect = self.image.get_rect()
     
     def moveRight(self, pixels):
