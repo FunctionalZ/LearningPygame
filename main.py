@@ -21,9 +21,9 @@ programIcon = pygame.image.load("assets/playerCharacter.png")
 
 #Open game window
 size = (640,480)
-screen = pygame.display.set_mode(size, pygame.SCALED, vsync=1)
-pygame.display.set_caption("RPG Engine (indev)")
 pygame.display.set_icon(programIcon)
+pygame.display.set_caption("RPG Engine (indev)")
+screen = pygame.display.set_mode(size, pygame.SCALED, vsync=1)
 
 windowed = True
 fullscreen = False
