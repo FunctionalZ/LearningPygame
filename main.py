@@ -25,6 +25,9 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("RPG Engine (indev)")
 pygame.display.set_icon(programIcon)
 
+windowed = True
+fullscreen = False
+
 #lists that contains all sprites
 player_sprites = pygame.sprite.Group()
 level_sprites = pygame.sprite.Group()
@@ -69,6 +72,9 @@ while carryOn:
         if event.type == pygame.QUIT: # If user clicked close
               carryOn = False # Flag that we are done so we can exit the while loop
     
+    if fullscreen:
+        pygame.WINDOWTAKEFOCUS
+
     #coordinate forecast up
     coordinateForcastUp[0] = coordinates[0]
     coordinateForcastUp[1] = coordinates[1] + 1
@@ -151,6 +157,19 @@ while carryOn:
         print("Coordinate Forecast down: " + str(coordinateForcastDown))
         print("Coordinate Forecast left: " + str(coordinateForcastLeft))
         print("Coordinate Forecast right: " + str(coordinateForcastRight))
+
+    #some stuff for switching between windowed and fullscreen mode
+    if keys[pygame.K_f]:
+        pygame.display.set_mode(size, pygame.FULLSCREEN)
+        fullscreen = True
+        windowed = False
+        pygame.WINDOWTAKEFOCUS
+    if keys[pygame.K_u]:
+        screen = pygame.display.set_mode(size)
+        windowed = True
+        fullscreen = False
+    if keys[pygame.K_ESCAPE]:
+        carryOn = False
 
     #Game Logic
     player_sprites.update()
