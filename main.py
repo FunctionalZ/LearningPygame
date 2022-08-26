@@ -55,7 +55,7 @@ game_paused = False
 in_pause_options = False
 
 #define fonts
-ubuntu = pygame.font.Font("assets/fonts/Ubuntu.ttf", 18)
+ubuntu_Eighteen = pygame.font.Font("assets/fonts/Ubuntu.ttf", 18)
 
 #define function to draw text
 def draw_text(text, font, text_col, x, y):
@@ -171,11 +171,11 @@ while carryOn:
         #draw arrow sprite to the screen
         menuArrow_sprites.draw(screen)
 
-        draw_text("Back to Menu", ubuntu, WHITE, 260, 120)
+        draw_text("Back to Menu", ubuntu_Eighteen, WHITE, 260, 120)
         if windowed:
-            draw_text("Currently Windowed", ubuntu, WHITE, 260, 280)
+            draw_text("Currently Windowed", ubuntu_Eighteen, WHITE, 260, 280)
         else:
-            draw_text("Currently Fullscreen", ubuntu, WHITE, 260, 280)
+            draw_text("Currently Fullscreen", ubuntu_Eighteen, WHITE, 260, 280)
 
         #screen update
         pygame.display.flip()
