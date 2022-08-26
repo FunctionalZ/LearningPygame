@@ -1,9 +1,8 @@
+import pygame, time, random, os
 from distutils.command.config import config
 from distutils.dist import DistributionMetadata
 from sys import displayhook
 from tokenize import _all_string_prefixes
-import pygame, time, random, os
-import numpy as np
 from assets.character import Person
 from assets.levelList import Level
 from assets.levelDictionary import currentMap
@@ -14,12 +13,15 @@ from assets.levelDictionary import startCoords
 from assets.levelDictionary import levelBoundsFill
 from assets.menus import PauseScreen
 from assets.menus import MenuArrow
+
 try:
-    from saveData.fullscreenConfig import windowed_config
-except:
+    from saveData.fullscreenconfig import windowed_config
+except ImportError:
     f = open("saveData/fullscreenconfig.py", "w")
     f.write("windowed_config = True")
     f.close()
+    from saveData.fullscreenconfig import windowed_config
+
 
 #engine initialize
 pygame.init
@@ -30,25 +32,21 @@ BLACK = (0,0,0)
 WHITE = (255,255,255)
 GRAY = (70, 70, 70)
 
-windowed = True
-try:
-    windowed = windowed_config
-except:
-    f = open("saveData/fullscreenconfig.py", "w")
-    f.write("windowed_config = True")
-    f.close()
+
+windowed = windowed_config
 
 #change the program icon
 programIcon = pygame.image.load("assets/playerCharacter.png")
 
 #Open game window and setup window stuff
+os.environ['SDL_VIDEO_WINDOW_POS'] = f"{100},{100}"
 pygame.display.set_icon(programIcon)
 pygame.display.set_caption("RPG Engine (indev)")
 size = [640,480]
 if windowed:
     selectedScreenSetup = pygame.display.set_mode(size, vsync=1)
 else:
-    selectedScreenSetup = pygame.display.set_mode(size, pygame.FULLSCREEN, vsync=1)  
+    selectedScreenSetup = pygame.display.set_mode(size, pygame.FULLSCREEN, vsync=1)
     
 screen = selectedScreenSetup
 
